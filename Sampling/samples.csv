@@ -1,0 +1,5 @@
+Visit to Asia:False,Smoking:False,Tuberculosis:True,Lung Cancer:False,Bronchitis:False,Tuberculosis or Cancer:True,X-Ray Result:True,Dyspnea:True
+Visit to Asia:False,Smoking:True,Tuberculosis:True,Lung Cancer:False,Bronchitis:False,Tuberculosis or Cancer:True,X-Ray Result:True,Dyspnea:False
+Visit to Asia:False,Smoking:False,Tuberculosis:False,Lung Cancer:False,Bronchitis:False,Tuberculosis or Cancer:False,X-Ray Result:False,Dyspnea:True
+Visit to Asia:False,Smoking:False,Tuberculosis:True,Lung Cancer:False,Bronchitis:True,Tuberculosis or Cancer:True,X-Ray Result:True,Dyspnea:False
+Visit to Asia:False,Smoking:False,Tuberculosis:False,Lung Cancer:False,Bronchitis:False,Tuberculosis or Cancer:False,X-Ray Result:False,Dyspnea:False
