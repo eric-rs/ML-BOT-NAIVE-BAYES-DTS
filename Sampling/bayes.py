@@ -162,9 +162,9 @@ class BayesNet:
         for i in range(n):
             strings = []
             for node in self.priorSample():
-                strings.append("{"+node.name + ":" + str(node.value) +"}")
+                strings.append(node.name + ":" + str(node.value))
 
-            self.appendStringToFile("samples.txt", ",".join(strings))
+            self.appendStringToFile("samples.csv", ",".join(strings))
 
             #self.printState()
 
@@ -178,7 +178,7 @@ class BayesNet:
 
 if __name__ == "__main__":
     b = BayesNet() # Creates a bayes net
-    nodes = b.beginSamplingAndSaveToFile(100000) #creates and saves 100 thousands of samples from the net
+    nodes = b.beginSamplingAndSaveToFile(5) #creates and saves 100 thousands of samples from the net
     '''
     strings = []
     for node in nodes:
