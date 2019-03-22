@@ -69,6 +69,7 @@ class BayesNet:
         '''
         self.nodes.append(Node("Dyspnea", [self.nodes[5], self.nodes[4]],
                           [0.90,0.70,0.80,0.10]))
+        self.nodes.append(self.nodes.pop(5))
 
     # Prints the current state of the network to stdout
     def printState(self):
@@ -177,8 +178,12 @@ class BayesNet:
                 file.write(input + "\n")
 
 if __name__ == "__main__":
+    with open("samples.csv",'w'):
+        pass
     b = BayesNet() # Creates a bayes net
-    nodes = b.beginSamplingAndSaveToFile(1000) #creates and saves 100 thousands of samples from the net
+    num = input("Numero:")
+    nodes = b.beginSamplingAndSaveToFile(int(num)) #creates and saves 100 thousands of samples from the net
+    print("Concluido.")
     '''
     strings = []
     for node in nodes:
