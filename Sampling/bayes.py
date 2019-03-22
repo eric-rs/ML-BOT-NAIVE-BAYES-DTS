@@ -18,7 +18,7 @@ class BayesNet:
 
 
         '''
-                Visit Asia+ |   Visit asia-    
+                Visit Asia+ |   Visit asia-
             T    0.5                0.1
         '''
         self.nodes.append(Node("Tuberculosis",
@@ -26,14 +26,14 @@ class BayesNet:
                                [0.5, 0.1])) #index=2
 
         '''
-                Lung Cancer+ |   Lung Cancer-    
+                Lung Cancer+ |   Lung Cancer-
         Smoking    0.10                0.01
         '''
         self.nodes.append(Node("Lung Cancer",
                                [self.nodes[1]],
                                [0.1, 0.01])) #index=3
         '''
-                Bronchitis+ |   Bronchitis-    
+                Bronchitis+ |   Bronchitis-
         Smoking    0.6                0.3
         '''
         self.nodes.append(Node("Bronchitis",
@@ -45,7 +45,7 @@ class BayesNet:
                 True            False                   1                               0
                 False           True                    1                               0
                 False           False                   0                               1
-        
+
         '''
         self.nodes.append(Node("Tuberculosis or Cancer",
                                [self.nodes[2], self.nodes[3]],
@@ -63,9 +63,9 @@ class BayesNet:
                             True            True               0.90             0.1
                             True            False              0.70             0.3
                             False           True               0.80             0.2
-                            False           False              0.10             0.90 
-        
-                
+                            False           False              0.10             0.90
+
+
         '''
         self.nodes.append(Node("Dyspnea", [self.nodes[5], self.nodes[4]],
                           [0.90,0.70,0.80,0.10]))
@@ -162,9 +162,9 @@ class BayesNet:
         for i in range(n):
             strings = []
             for node in self.priorSample():
-                strings.append("{"+node.name + ":" + str(node.value) +"}")
+                strings.append(node.name + ":" + str(node.value))
 
-            self.appendStringToFile("samples.txt", ",".join(strings))
+            self.appendStringToFile("samples.csv", ",".join(strings))
 
             #self.printState()
 
@@ -178,7 +178,7 @@ class BayesNet:
 
 if __name__ == "__main__":
     b = BayesNet() # Creates a bayes net
-    nodes = b.beginSamplingAndSaveToFile(100000) #creates and saves 100 thousands of samples from the net
+    nodes = b.beginSamplingAndSaveToFile(1000) #creates and saves 100 thousands of samples from the net
     '''
     strings = []
     for node in nodes:
