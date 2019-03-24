@@ -162,14 +162,20 @@ class BayesNet:
         result = []
         
         for sample in range(len(numberOfSamples)):
-            with open(filename+str(sample)+".csv", 'w'):
+            with open(filename+"-naive"+str(sample)+".csv", 'w'):
+                    pass
+            with open(filename+"-tree"+str(sample)+".csv", 'w'):
                     pass
             for i in range(numberOfSamples[sample]):
                 strings = []
+                strings2 = []
                 for node in self.priorSample():
-                    strings.append(node.name + ":" + str(node.value))
-
-                self.appendStringToFile(filename+str(sample)+".csv", ",".join(strings))
+                    strings.append(node.name + ":" + str(node.value)) #versão para naive bayes
+                    strings2.append('1' if node.value == True else '0') # versão para floresta aleatoria
+                
+                strings2.reverse()
+                self.appendStringToFile(filename +"-naive" + str(sample) + ".csv", ",".join(strings))
+                self.appendStringToFile(filename +"-tree" + str(sample)+ ".csv", ",".join(strings2))
 
                 #self.printState()
 
