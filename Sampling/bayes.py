@@ -1,5 +1,6 @@
-from Node import Node
 import random
+from Node import Node
+
 
 PLAYING_EXAMPLES = [(True, False), (True, False), (True, True),
                     (True, False), (True, False), (False, True),
@@ -157,17 +158,26 @@ class BayesNet:
         {Visit to Asia:False},{Smoking:False},{Tuberculosis:False},{Lung Cancer:False},{Bronchitis:True},{Tuberculosis or Cancer:False},{X-Ray Result:False},{Dyspnea:True}
 
     '''
-    def beginSamplingAndSaveToFile(self,n):
+    def beginSamplingAndSaveToFile(self,numberOfSamples, filename):
         result = []
+        
+        for sample in range(len(numberOfSamples)):
+            with open(filename+"-naive"+str(sample)+".csv", 'w'):
+                    pass
+            with open(filename+"-tree"+str(sample)+".csv", 'w'):
+                    pass
+            for i in range(numberOfSamples[sample]):
+                strings = []
+                strings2 = []
+                for node in self.priorSample():
+                    strings.append(node.name + ":" + str(node.value)) #versão para naive bayes
+                    strings2.append('1' if node.value == True else '0') # versão para floresta aleatoria
+                
+                strings2.reverse()
+                self.appendStringToFile(filename +"-naive" + str(sample) + ".csv", ",".join(strings))
+                self.appendStringToFile(filename +"-tree" + str(sample)+ ".csv", ",".join(strings2))
 
-        for i in range(n):
-            strings = []
-            for node in self.priorSample():
-                strings.append(node.name + ":" + str(node.value))
-
-            self.appendStringToFile("samples.csv", ",".join(strings))
-
-            #self.printState()
+                #self.printState()
 
 
         return result
@@ -178,11 +188,9 @@ class BayesNet:
                 file.write(input + "\n")
 
 if __name__ == "__main__":
-    with open("samples.csv",'w'):
-        pass
     b = BayesNet() # Creates a bayes net
-    num = input("Numero:")
-    nodes = b.beginSamplingAndSaveToFile(int(num)) #creates and saves 100 thousands of samples from the net
+    numberOfSamples = [2,100,150]
+    nodes = b.beginSamplingAndSaveToFile(numberOfSamples,"sample") #creates and saves 100 thousands of samples from the net
     print("Concluido.")
     '''
     strings = []
