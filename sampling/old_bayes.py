@@ -1,4 +1,6 @@
-from Node import Node
+# naïve bayes samples generator
+# script to generate four samples archives to naïve bayes algorith
+
 import random
 
 PLAYING_EXAMPLES = [(True, False), (True, False), (True, True),
@@ -69,6 +71,9 @@ class BayesNet:
         '''
         self.nodes.append(Node("Dyspnea", [self.nodes[5], self.nodes[4]],
                           [0.90,0.70,0.80,0.10]))
+
+        # push the class to the end of the list
+        self.nodes.append(self.nodes.pop(5))
 
     # Prints the current state of the network to stdout
     def printState(self):
@@ -151,20 +156,22 @@ class BayesNet:
 
     '''
         this method receives an number n of samples that will generate with prior sampling
-        the result is file named sampling.txt created in the folder of tthe project with strings consisting of key values
-        EX:
-        {Visit to Asia:False},{Smoking:False},{Tuberculosis:False},{Lung Cancer:False},{Bronchitis:True},{Tuberculosis or Cancer:False},{X-Ray Result:False},{Dyspnea:True}
+        the result is a file named naive_bayes_x_samples.csv created in the folder of the
+        project with strings consisting of key values
 
+        EX: Visit to Asia:False,Smoking:False,Tuberculosis:False,Lung Cancer:False,
+        Bronchitis:True,Tuberculosis or Cancer:False,X-Ray Result:False,Dyspnea:True
     '''
+
     def beginSamplingAndSaveToFile(self,n):
         result = []
 
         for i in range(n):
             strings = []
             for node in self.priorSample():
-                strings.append("{"+node.name + ":" + str(node.value) +"}")
+                strings.append(node.name + ":" + str(node.value))
 
-            self.appendStringToFile("./datasets/naive_bayes_" +str(n)+ "samples.csv", ",".join(strings))
+            self.appendStringToFile("./datasets/naive_bayes_" +str(n)+ "_samples.csv", ",".join(strings))
 
             #self.printState()
 
@@ -178,10 +185,10 @@ class BayesNet:
 
 if __name__ == "__main__":
     b = BayesNet() # Creates a bayes net
-    nodes1 = b.beginSamplingAndSaveToFile(100) #creates and saves 100 thousands of samples from the net
-    nodes2 = b.beginSamplingAndSaveToFile(1000) #creates and saves 100 thousands of samples from the net
-    nodes3 = b.beginSamplingAndSaveToFile(10000) #creates and saves 100 thousands of samples from the net
-    nodes4 = b.beginSamplingAndSaveToFile(100000) #creates and saves 100 thousands of samples from the net
+    nodes1 = b.beginSamplingAndSaveToFile(100) #creates and saves a hundred samples from the net
+    #nodes2 = b.beginSamplingAndSaveToFile(1000) #creates and saves a thousand of samples from the net
+    #nodes3 = b.beginSamplingAndSaveToFile(10000) #creates and saves ten thousand of samples from the net
+    #nodes4 = b.beginSamplingAndSaveToFile(100000) #creates and saves a hundred thousand of samples from the net
     print("Concluido.")
     '''
     strings = []
@@ -191,4 +198,5 @@ if __name__ == "__main__":
 
     print(strings)
 
-    '''
+# naïve bayes samples generator
+# script to generate four samples archives to naïve bayes algorith    '''
